@@ -1,0 +1,55 @@
+esp> ping -c 50  test.mosquitto.org 
+                                                                                                                                                                                                                                 64 bytes from 91.121.93.94 icmp_seq=1 ttl=50 time=133 ms
+esp> 64 bytes from 91.121.93.94 icmp_seq=2 ttl=50 time=163 ms
+64 bytes from 91.121.93.94 icmp_seq=3 ttl=50 time=190 ms
+64 bytes from 91.121.93.94 icmp_seq=4 ttl=50 time=211 ms
+64 bytes from 91.121.93.94 icmp_seq=5 ttl=50 time=236 ms
+64 bytes from 91.121.93.94 icmp_seq=6 ttl=50 time=258 ms
+64 bytes from 91.121.93.94 icmp_seq=7 ttl=50 time=77 ms
+64 bytes from 91.121.93.94 icmp_seq=8 ttl=50 time=51 ms
+64 bytes from 91.121.93.94 icmp_seq=9 ttl=50 time=127 ms
+64 bytes from 91.121.93.94 icmp_seq=10 ttl=50 time=52 ms
+64 bytes from 91.121.93.94 icmp_seq=11 ttl=50 time=177 ms
+64 bytes from 91.121.93.94 icmp_seq=12 ttl=50 time=198 ms
+64 bytes from 91.121.93.94 icmp_seq=13 ttl=50 time=51 ms
+64 bytes from 91.121.93.94 icmp_seq=14 ttl=50 time=245 ms
+64 bytes from 91.121.93.94 icmp_seq=15 ttl=50 time=270 ms
+64 bytes from 91.121.93.94 icmp_seq=16 ttl=50 time=53 ms
+64 bytes from 91.121.93.94 icmp_seq=17 ttl=50 time=112 ms
+64 bytes from 91.121.93.94 icmp_seq=18 ttl=50 time=51 ms
+64 bytes from 91.121.93.94 icmp_seq=19 ttl=50 time=160 ms
+64 bytes from 91.121.93.94 icmp_seq=20 ttl=50 time=55 ms
+64 bytes from 91.121.93.94 icmp_seq=21 ttl=50 time=215 ms
+64 bytes from 91.121.93.94 icmp_seq=22 ttl=50 time=51 ms
+64 bytes from 91.121.93.94 icmp_seq=23 ttl=50 time=256 ms
+64 bytes from 91.121.93.94 icmp_seq=24 ttl=50 time=53 ms
+64 bytes from 91.121.93.94 icmp_seq=25 ttl=50 time=51 ms
+64 bytes from 91.121.93.94 icmp_seq=26 ttl=50 time=123 ms
+64 bytes from 91.121.93.94 icmp_seq=27 ttl=50 time=147 ms
+From 91.121.93.94 icmp_seq=28 timeout
+64 bytes from 91.121.93.94 icmp_seq=29 ttl=50 time=50 ms
+64 bytes from 91.121.93.94 icmp_seq=30 ttl=50 time=219 ms
+64 bytes from 91.121.93.94 icmp_seq=31 ttl=50 time=244 ms
+64 bytes from 91.121.93.94 icmp_seq=32 ttl=50 time=49 ms
+64 bytes from 91.121.93.94 icmp_seq=33 ttl=50 time=51 ms
+64 bytes from 91.121.93.94 icmp_seq=34 ttl=50 time=52 ms
+64 bytes from 91.121.93.94 icmp_seq=35 ttl=50 time=134 ms
+64 bytes from 91.121.93.94 icmp_seq=36 ttl=50 time=164 ms
+From 91.121.93.94 icmp_seq=37 timeout
+64 bytes from 91.121.93.94 icmp_seq=38 ttl=50 time=214 ms
+64 bytes from 91.121.93.94 icmp_seq=39 ttl=50 time=230 ms
+64 bytes from 91.121.93.94 icmp_seq=40 ttl=50 time=254 ms
+64 bytes from 91.121.93.94 icmp_seq=41 ttl=50 time=56 ms
+64 bytes from 91.121.93.94 icmp_seq=42 ttl=50 time=101 ms
+64 bytes from 91.121.93.94 icmp_seq=43 ttl=50 time=49 ms
+64 bytes from 91.121.93.94 icmp_seq=44 ttl=50 time=51 ms
+From 91.121.93.94 icmp_seq=45 timeout
+64 bytes from 91.121.93.94 icmp_seq=46 ttl=50 time=50 ms
+64 bytes from 91.121.93.94 icmp_seq=47 ttl=50 time=217 ms
+64 bytes from 91.121.93.94 icmp_seq=48 ttl=50 time=241 ms
+64 bytes from 91.121.93.94 icmp_seq=49 ttl=50 time=265 ms
+64 bytes from 91.121.93.94 icmp_seq=50 ttl=50 time=58 ms
+
+--- 91.121.93.94 ping statistics ---
+50 packets transmitted, 47 received, 6% packet loss, time 9512ms
+
