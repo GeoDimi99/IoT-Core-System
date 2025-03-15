@@ -1,7 +1,6 @@
-# IoT Base System
+# IoT Core System
 
 ### Individual Assingment (IoT Algorithm and Services)
-
 
 ##### Georgi Todorov Dimitrov ID 1890039
 
@@ -10,33 +9,38 @@ The project is composed by the following parts:
 
 1. Signal Generation code
 2. Code for the ESP32s3 :
-	- Oversample the signal;
-	- Compute the Fourier Trasform (FFT) and use the Sampling Theorem for adjust the sampling frequency; 
-	- Compute the average of the sampled signal;
-	- Comunication with MQTT Brocker through MQTTS (MQTT over TLS protocol);
-	- Ping with ICMP code for measure the end-to-end delay for trasmitting message;
+   - Oversample the signal;
+   - Compute the Fourier Trasform (FFT) and use the Sampling Theorem for adjust the sampling frequency; 
+   - Compute the average of the sampled signal;
+   - Comunication with MQTT Brocker through MQTTS (MQTT over TLS protocol);
+   - Ping with ICMP code for measure the end-to-end delay for trasmitting message;
 
 The directory and the code are organise in this way:
-
 
     iot-base-system
             |
             |--- experiments
             |--- signal-generator                 
             |--- esp-code
-			| --- icmp_echo  ---->   Code for use ICMP protocol and for measure the end-to-end 
+            | --- icmp_echo  ---->   Code for use ICMP protocol and for measure the end-to-end 
                                              delay between ESP32s3 and test.mosquitto.org (the mqtt brocker)
-               	| --- iot-base-system        
-    			    | --- main
-    				    | --- main.c ----> This contain the code all the code for:
-    								- oversampling
-    								- fft and adapt the sampling 
-    								- mqtt comunication
-                
+                   | --- iot-base-system        
+                    | --- main
+                        | --- main.c ----> This contain the code all the code for:
+                                    - oversampling
+                                    - fft and adapt the sampling 
+                                    - mqtt comunication
+
+## Circuit Schematic
+
+Below is the schematic diagram of the iot-core-system:
+
+<img title="" src="schema/schema.jpg" alt="Circuit Schematic" data-align="center">
 
 ### Experiments
 
-#### 1. Signal Generation 
+#### 1. Signal Generation
+
 The Signal Generation is make by python code on jupyter-notebook that generate an audio output. The audio output is a signal generated as a sum of multiple sinusoids given by the formula:
 
 $$audio(t) = \sum_{k=1}^n a_k sin(2\pi t f_k+ \phi_k)$$
@@ -44,18 +48,16 @@ $$audio(t) = \sum_{k=1}^n a_k sin(2\pi t f_k+ \phi_k)$$
 In my experiment the parameters of this formula are n=1, a=50, f=450. 
 
 <p align="center">
-	<img src="experiments/wave.png"/>
+    <img src="experiments/wave.png"/>
 </p>
 
-
-
 #### 2. Maximum Sampling Frequency
+
 The next step is oversampling the signal and measure the maximum sampling rate of the device, for do this I use the `esp_timer.h` library and the `esp_timer_get_time()` for get the time at the start $$t_s$$ and the end $$t_s$$ of the sampling and get the sampling rate by this formula:
 
 $$F_s=\frac{N}{t_f - t_s}$$
 
 With some experience I measure that the maximum sampling frequency is 25000 Hz and the computation time for each iteration is 40 microsec how we can see from the follow result:
-
 
     I (508) ESP32s3: TIMER_STOP delay: 0.163893 s, delay for iter 0.000040 s, frequency 24991.916016 Hz
     I (1168) ESP32s3: TIMER_STOP delay: 0.163724 s, delay for iter 0.000040 s, frequency 25017.712891 Hz
@@ -78,8 +80,8 @@ With some experience I measure that the maximum sampling frequency is 25000 Hz a
     I (12388) ESP32s3: TIMER_STOP delay: 0.163735 s, delay for iter 0.000040 s, frequency 25016.031250 Hz
     I (13048) ESP32s3: TIMER_STOP delay: 0.163729 s, delay for iter 0.000040 s, frequency 25016.949219 Hz
 
-
 #### 3. Minimum Sampling Frequency
+
 Once the signal is sampled I compute the FFT and using the Z-Score analysis and the Sampling theorem I identify the optimal sampling frequency with the Nyquist theorem:
 
 $$fs > 2 * f_{max}$$
@@ -93,6 +95,7 @@ Where $$t_s$$ is the sample interval, $$f_s$$ is the optimal sample frequency an
 If I use the `xTaskDelay(ts)` the maximum sampling rate that I can perform is 1000 Hz because this function can accept time bigger than one millisec, for generate delay of the order of microsec I use the function `ets_delay_us(ts)` in the library `rom/ets_sys.h`. 
 
 #### 4. Average Sampling Signal
+
 The agregate function that I use is the square mean, i.e. I compute the mean with the follow formula:
 
 $$E[X^2]=\frac{\sum_{k=1} x^2(k)}{N}$$
@@ -119,20 +122,20 @@ The avarage that I measure is the follow:
     
     TOPIC=sample_1890039
     DATA=AVG AUDIO:  6.235312
-    
 
-#### 5. Performance 
+#### 5. Performance
+
 ##### 5.1 Energy consumption
+
 The energy consumption I measure using a multimeter and the consumption is the follow:
+
 - **Power consumption in oversampling**: 
 
 $$P_{maxsample}=55\ mA * 5 \ V$$
 
-
 - **Power consumption in adapted sampling**: 
 
 $$P_{sample}=42.6\ mA * 5 \ V$$
-
 
 - **Power consumption during communication**: 
 
@@ -142,16 +145,16 @@ $$P_{comunication}=47.5\ mA * 5 \ V$$
 
 $$P_{tot}=64\ mA * 5 \ V$$
 
-
-
 ##### 5.2 Traffic Volume Data
+
 The traffic volume I see with Wireshark, in particular I use the program `mosquitto-client` and `mosquitto-sub` to receve the packet from the broker *test.mosquitto.org* and capture the packet with `Wireshark`. Each packet has a length of 126 byte how can show the follow image:
 
 <p align="center">
-	<img src="experiments/wireshark.png"/>
+    <img src="experiments/wireshark.png"/>
 </p>
 
 ##### 5.3 Traffic End-to-End Latency
+
 For measure the End-to-End latency I use the example of the esp-idf framework of the ICMP protocol and run it on my device and contact the brocker *test.mosquitto.org*
 
     esp> ping -c 50  test.mosquitto.org 
