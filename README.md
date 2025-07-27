@@ -47,9 +47,6 @@ $$audio(t) = \sum_{k=1}^n a_k sin(2\pi t f_k+ \phi_k)$$
 
 In my experiment the parameters of this formula are n=1, a=50, f=450. 
 
-<p align="center">
-    <img src="experiments/wave.png"/>
-</p>
 
 #### 2. Maximum Sampling Frequency
 
